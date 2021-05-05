@@ -1,0 +1,12 @@
+UNF:
+DB(staffNo, dentistName, patientNo, patientName, appDate, appTime, surgeryNo)
+
+1NF: no repeating groups, add all data, define PK that makes each row unique
+DB(*staffNo*, dentistName, *patientNo*, patientName, *appDate*, appTime, surgeryNo)
+
+2NF: no partial dependencies: every attribute dependent on the entire PK
+-dentistName only dependent on staffNo:
+dentist(*staffNo*, dentistName)
+DB(*staffNo*, *patientNo*, patientName, *appDate)
+
+...
