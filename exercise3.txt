@@ -1,0 +1,33 @@
+UNF:
+DB(PatientNo, FullName, BedNo, WardNo, WardName, DrugNo, Name, Descr, Dosage,
+MoA, UpD, StartD, FinishD)
+
+1NF: define PK, put all data in, no repeating groups
+DB(*PatientNo*, FullName, BedNo, WardNo, WardName, [*DrugNo*, Name, Descr, Dosage,
+MoA, UpD, *StartD*, FinishD])
+
+2NF: no partial dependencies
+DB(*PatientNo*, *DrugNo*, UpD, *StartD*, FinishD)
+Patient(*PatientNo*, FullName, BedNo, WardNo, WardName)
+Drug(*DrugNo*, Name, Descr, Dosage, MoA)
+
+3NF: no transitive dependencies.
+Wardname depends on WardNo
+DB(*PatientNo*, *DrugNo*, UpD, *StartD*, FinishD)
+Patient(*PatientNo*, FullName, BedNo, WardNo)
+Ward(*WardNo*, WardName)
+Drug(*DrugNo*, Name, Descr, Dosage, MoA)
+
+=BCNF: all determinants are candidate keys
+
+DB(*PatientNo*, *DrugNo*, UpD, *StartD*, FinishD)
+Patient(*PatientNo*, FullName, BedNo, WardNo)
+Ward(*WardNo*, WardName)
+Drug(*DrugNo*, Name, Descr, Dosage, MoA)
+
+Patient No -> Full Name
+Ward No -> Ward Name
+Drug No -> Name, Description, Dosage,
+	       Method of Admin
+Patient No, Drug No, Start Date -> Units per Day,
+				         Finish Date
